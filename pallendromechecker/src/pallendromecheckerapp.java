@@ -1,35 +1,44 @@
-public class UseCase10PalindromeCheckerApp {
+// PalindromeChecker service class
+class PalindromeChecker {
 
-    public static void main(String[] args) {
-
-        // Original string
-        String text = "A man a plan a canal Panama";
-
-        // Normalize the string: remove spaces & special characters, convert to lowercase
-        String normalized = text.replaceAll("[^a-zA-Z]", "").toLowerCase();
+    // Method to check palindrome
+    public boolean checkPalindrome(String word) {
 
         int start = 0;
-        int end = normalized.length() - 1;
+        int end = word.length() - 1;
 
-        boolean isPalindrome = true;
-
-        // Two-pointer comparison
         while (start < end) {
 
-            if (normalized.charAt(start) != normalized.charAt(end)) {
-                isPalindrome = false;
-                break;
+            if (word.charAt(start) != word.charAt(end)) {
+                return false;
             }
 
             start++;
             end--;
         }
 
-        // Display result
-        if (isPalindrome) {
-            System.out.println("The string \"" + text + "\" is a Palindrome (ignoring spaces and case).");
+        return true;
+    }
+}
+
+// Main application class
+public class UseCase11PalindromeCheckerApp {
+
+    public static void main(String[] args) {
+
+        String word = "madam";
+
+        // Create object of PalindromeChecker
+        PalindromeChecker checker = new PalindromeChecker();
+
+        // Call method
+        boolean result = checker.checkPalindrome(word);
+
+        // Print result
+        if (result) {
+            System.out.println("The string \"" + word + "\" is a Palindrome.");
         } else {
-            System.out.println("The string \"" + text + "\" is NOT a Palindrome.");
+            System.out.println("The string \"" + word + "\" is NOT a Palindrome.");
         }
     }
 }
